@@ -1,0 +1,161 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+    justify-content: center;
+    /* justify-content: flex-start; */
+    min-height: 94vh;
+    /* vh 是 viewport height 的缩写，表示“视口高度的百分比”。
+    100vh = 当前浏览器窗口高度的 100% */
+    margin: 0;
+    padding: 20px;
+    color: #fff;
+}
+
+:root{
+    --font-large: 22px;     /* 一级菜单字体 */
+    --font-normal: 20px;    /* 正文 */
+    --font-small: 18px;
+}
+
+/* #是唯一id，.是class可多个元素使用 */
+
+#first {
+    display:flex;
+    /* 将容器变为 弹性布局容器，内部元素可以方便地排成行或列并对齐。 */
+    flex-direction: row;
+    /* 主轴方向为行/列（垂直排列），默认是 row（水平方向排列）。*/
+    justify-content: center; /* 主轴居中 */
+    align-items: center;
+    /* 交叉轴对齐方式，这里是让子元素在水平方向居中。 */
+    margin-bottom: 30px;
+}
+
+#buttons {
+    display: flex;
+    margin: auto;
+}
+
+/* id + tag */
+/* 是 id 选择器 + 标签选择器，意思是“选取 id 为 buttons 的元素内部的所有 button 元素”。 */
+#buttons button{
+    width:max-content;
+    background: #ff7f50;
+    border: none;
+    border-radius: 12px;
+    padding: 12px 25px;
+    margin: 8px;
+    text-align: center;
+    /* justify-content: center; */
+    /* justify-content 只对 Flex 容器有效，而 button 默认不是 flex 容器，所以 justify-content: center; 并不起作用。 */
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+#buttons button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 10px rgba(0,0,0,0.3);
+}
+
+.info-box {
+    background: rgba(0,0,0,0.3);
+    padding: 10px 25px;
+    margin: 8px;
+    border-radius: 12px;
+    font-size: 20px;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    max-width: max-content;
+}
+
+/* 数字区域布局 */
+#areas {
+    display: grid;
+    /* 网格布局，把容器划分为行和列，可以轻松控制元素排列。 */
+    grid-template-columns: repeat(4, 120px);
+    grid-template-rows: repeat(1, 120px);
+    gap: 20px;
+    /* 
+    grid-template-columns: repeat(2, 120px);
+    定义列：这里是两列，每列 120px 宽。
+    grid-template-rows: repeat(2, 120px);
+    定义行：两行，每行 120px 高。
+    gap: 20px;
+    行列之间的间距 20px。
+    */
+    /* 
+    gap 与 padding、margin、border 的区别:
+    padding：内边距，元素内容和元素边框之间的空白。
+    margin：外边距，元素边框和外部其他元素之间的空白。
+    border：边框，本身的线条宽度。
+    gap：专门用于 Flex/Grid 布局，表示子元素之间的间距，不影响外边距和内边距。
+    */
+}
+
+.number-box {
+    background: rgba(255,255,255,0.2);
+    /* a = alpha，透明度，0 完全透明，1 完全不透明 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /*
+    主轴对齐方式（Flex/Grid）
+    center → 元素在主轴方向居中
+    对于 flex-direction: column → 主轴是垂直方向，
+    justify-content: center 会垂直居中。 
+     */
+    font-size: 36px;
+    font-weight: bold;
+    border-radius: 16px;
+    cursor: pointer;
+    /* 鼠标悬停时显示手型，提示用户可以点击。 */
+    transition: all 0.2s ease;
+    /* 动画过渡效果，这里表示所有属性变化都在 0.2 秒内缓动变化，ease 是缓动函数。 */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    /* 阴影效果，语法：水平偏移 垂直偏移 模糊半径 颜色。
+    这里是 0px 水平偏移，4px 垂直偏移，6px 模糊，半透明黑色阴影。 */
+}
+
+.number-box:hover {
+    transform: scale(1.1);
+    /* 
+    变换属性，scale(1.1) 表示放大 110%
+    可用来实现悬停放大、旋转、位移等动画效果    
+    */
+    background: rgba(255,255,255,0.3);
+}
+
+.E .buttons {
+    flex: 1.5;
+    margin: 15px;
+    background-color: white;
+    font-size: var(--font-normal);
+    
+}
+
+/* 响应式处理 */
+@media (max-width: 580px) {
+    #areas {
+        grid-template-columns: repeat(2, 100px);
+        grid-template-rows: repeat(2, 100px);
+        gap: 15px;
+    }
+    .number-box {
+        font-size: 28px;
+    }
+    #buttons button {
+        padding: 10px 22px;
+        font-size: 16px;
+    }
+    #buttons {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+}
