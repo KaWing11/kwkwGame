@@ -410,7 +410,7 @@ button:disabled:hover {
 @media screen and (max-width: 480px) {
         /* 外层容器 */
     #progressContainer {
-        margin-left: 10px;
+        margin-left: 0px;
     }
 
     /* 浮动提示框样式 */
@@ -419,3 +419,4 @@ button:disabled:hover {
     }
   
 }
+
