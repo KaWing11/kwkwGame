@@ -404,4 +404,18 @@ button:disabled:hover {
         align-items: center;
         justify-content: center;
     }
+
+}
+
+@media screen and (max-width: 480px) {
+        /* 外层容器 */
+    #progressContainer {
+        margin-left: 10px;
+    }
+
+    /* 浮动提示框样式 */
+    #quoteBubble {
+        right: 100px; /* 根据你进度条的位置微调 */
+    }
+  
 }
