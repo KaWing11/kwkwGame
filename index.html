@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>kwkw小游戏</title>
+  <link rel="stylesheet" type="text/css" href="./css/style.css" />
+  <link rel="icon" type="image/png" href="./assert/image/Game.png">     <!-- 现代浏览器 -->
+</head>
+
+<body>
+      <!-- 游戏说明模态框 -->
+    <div id="ruleModal" class="modal">
+      <div class="modal-content">
+        <h2>🧩 游戏规则</h2>
+        <p>
+          点击数字中<strong>最大的那个</strong>即可得分。<br>
+          点击错误会扣分。<br>
+          结束游戏后可查看总分与正确率。<br>
+          正确率≥90% 有惊喜哦！🎉
+        </p>
+        <button id="closeRule">我知道啦！</button>
+      </div>
+    </div>
+
+    <!-- 模态框（结束游戏弹窗） -->
+    <div id="resultModal" class="modal">
+      <div class="modal-content">
+        <h2>🎮 游戏结束</h2>
+        <p id="resultText"></p>
+        <button id="closeModal">确定</button>
+      </div>
+    </div>
+
+    <div id="page">
+      <div id="navigation">
+        <p>😄欢迎来到kwkw小游戏🎉</p>
+      </div>
+  
+      <div id="main">
+        <div id="game-panel">
+          <div id="title">
+            <h1>比比谁更大？</h1>
+          </div>
+      
+          <div id="first">
+              <div id="buttons">
+                  <button id="startBtn">开始游戏</button>
+                  <button id="endBtn">结束游戏</button>
+              </div>
+              <div id="E" class="info-box">做题数: 0 分数: 0</div>
+          </div>
+            
+          <div id="areas">
+              <div id="A" class="number-box"></div>
+              <div id="B" class="number-box"></div>
+              <div id="C" class="number-box"></div>
+              <div id="D" class="number-box"></div>
+          </div>
+        </div>
+    
+        <div id="progressContainer">
+          <p id="progressText">正确率：0%</p>
+          <div id="progressOuter">
+            <div id="progressBar"></div>
+          </div>
+          <div id="quoteBubble"></div> <!-- 浮动提示框 -->
+        </div>  
+      </div>
+    </div>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/prototype/1.7.3/prototype.min.js"></script>
+    <script type="text/javascript" src="./js/script.js"></script>
+  
+</body>

@@ -1,0 +1,407 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+    justify-content: center;
+    /* justify-content: flex-start; */
+    min-height: 94vh;
+    /* vh 是 viewport height 的缩写，表示“视口高度的百分比”。
+    100vh = 当前浏览器窗口高度的 100% */
+    margin: 0;
+    color: #fff;
+}
+
+/* 禁用状态按钮样式 */
+button:disabled {
+    opacity: 0.5; /* 半透明雾感 */
+    cursor: not-allowed; /* 鼠标悬停变成禁止符号 */
+    filter: grayscale(60%); /* 灰度化 */
+    box-shadow: none; /* 去掉阴影 */
+    transition: opacity 0.3s ease, filter 0.3s ease;
+}
+  
+/* 禁用状态下禁止点击反馈（可选） */
+button:disabled:hover {
+    transform: none;
+    background: inherit;
+}  
+
+#page{
+    height: 100vh;
+    width: 100%;
+    margin: 0px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* #是唯一id，.是class可多个元素使用 */
+
+#navigation{
+    /*position: fixed;    /* 固定定位，脱离标准文档流 */
+    /*top: 0;             /* 顶部对齐 */
+    /*left: 0;            /* 左边对齐 */
+    width: 100%;        /* 占满整个宽度 */
+    height: 50px;       /* 可以根据需求调整高度 */
+    background: linear-gradient(135deg, #48a4f4, #02e1ed);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 5px rgba(0,0,0,0.1);
+    z-index: 1000;      /* 保证在最上层显示 */
+    font-weight:500;
+    font-size: 18px;
+    letter-spacing: 2px;
+}
+
+#first {
+    display:flex;
+    /* 将容器变为 弹性布局容器，内部元素可以方便地排成行或列并对齐。 */
+    flex-direction: row;
+    /* 主轴方向为行/列（垂直排列），默认是 row（水平方向排列）。*/
+    justify-content: center; /* 主轴居中 */
+    align-items: center;
+    /* 交叉轴对齐方式，这里是让子元素在水平方向居中。 */
+    margin-bottom: 30px;
+}
+
+#buttons {
+    display: flex;
+    margin: auto;
+}
+
+/* id + tag */
+/* 是 id 选择器 + 标签选择器，意思是“选取 id 为 buttons 的元素内部的所有 button 元素”。 */
+#buttons button{
+    width:max-content;
+    background: #ff7f50;
+    border: none;
+    border-radius: 12px;
+    padding: 12px 25px;
+    margin: 8px;
+    text-align: center;
+    /* justify-content: center; */
+    /* justify-content 只对 Flex 容器有效，而 button 默认不是 flex 容器，所以 justify-content: center; 并不起作用。 */
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+#buttons button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 10px rgba(0,0,0,0.3);
+}
+
+.info-box {
+    background: rgba(0,0,0,0.3);
+    padding: 10px 25px;
+    margin: 8px;
+    border-radius: 12px;
+    font-size: 20px;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    max-width: max-content;
+}
+
+/* 数字区域布局 */
+#areas {
+    display: grid;
+    /* 网格布局，把容器划分为行和列，可以轻松控制元素排列。 */
+    grid-template-columns: repeat(4, 120px);
+    grid-template-rows: repeat(1, 120px);
+    gap: 20px;
+
+    /*  新增：让网格整体居中 */
+    justify-content: center;  /* 水平居中 */
+    align-content: center;    /* 垂直居中（如果父容器足够高） */
+    margin: 0 auto;           /* 防止父容器有额外的左右空间时不居中 */
+    /* 
+    grid-template-columns: repeat(2, 120px);
+    定义列：这里是两列，每列 120px 宽。
+    grid-template-rows: repeat(2, 120px);
+    定义行：两行，每行 120px 高。
+    gap: 20px;
+    行列之间的间距 20px。
+    */
+    /* 
+    gap 与 padding、margin、border 的区别:
+    padding：内边距，元素内容和元素边框之间的空白。
+    margin：外边距，元素边框和外部其他元素之间的空白。
+    border：边框，本身的线条宽度。
+    gap：专门用于 Flex/Grid 布局，表示子元素之间的间距，不影响外边距和内边距。
+    */
+}
+
+.number-box {
+    background: rgba(255,255,255,0.2);
+    /* a = alpha，透明度，0 完全透明，1 完全不透明 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /*
+    主轴对齐方式（Flex/Grid）
+    center → 元素在主轴方向居中
+    对于 flex-direction: column → 主轴是垂直方向，
+    justify-content: center 会垂直居中。 
+     */
+    font-size: 36px;
+    font-weight: bold;
+    border-radius: 16px;
+    cursor: pointer;
+    /* 鼠标悬停时显示手型，提示用户可以点击。 */
+    transition: all 0.2s ease;
+    /* 动画过渡效果，这里表示所有属性变化都在 0.2 秒内缓动变化，ease 是缓动函数。 */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    /* 阴影效果，语法：水平偏移 垂直偏移 模糊半径 颜色。
+    这里是 0px 水平偏移，4px 垂直偏移，6px 模糊，半透明黑色阴影。 */
+}
+
+.number-box:hover {
+    transform: scale(1.1);
+    /* 
+    变换属性，scale(1.1) 表示放大 110%
+    可用来实现悬停放大、旋转、位移等动画效果    
+    */
+    background: rgba(255,255,255,0.3);
+}
+
+.E .buttons {
+    flex: 1.5;
+    margin: 15px;
+    background-color: white;
+    font-size: var(--font-normal);
+    
+}
+
+.correct {
+    background-color: #b3ffb3 !important;
+    animation: flashGreen 0.6s ease;
+}
+
+.wrong {
+    background-color: #ffb3b3 !important;
+    animation: flashRed 0.6s ease;
+}
+
+/* 模态框背景层 */
+/* 模态框背景层 */
+.modal {
+    display: none; /* 默认隐藏 */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4); /* 半透明背景 */
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.3s ease;
+    display: none;
+    flex-direction: column;
+}
+  
+  /* 模态框内容 */
+.modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    width: 80%;
+    max-width: 320px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    animation: popIn 0.4s ease;
+}
+  
+.modal-content h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.modal-content p {
+    color: black !important;
+    line-height: 1.5;
+    margin-top: 2px;
+    margin-bottom: 4px;
+}
+
+.modal-content button {
+    margin-top: 12px;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 8px;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+  
+.modal-content button:hover {
+    background-color: #45a049;
+}
+
+#resultText{
+    color: black !important;
+    line-height: 1.5;
+    margin-top: 2px;
+    margin-bottom: 4px;
+}
+  
+  /* 动画：淡入与弹出 */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+  
+@keyframes popIn {
+    0% { transform: scale(0.8); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+  
+
+@keyframes flashGreen {
+    0% { background-color: #b3ffb3; transform: scale(1); }
+    50% { background-color: #00ff00; transform: scale(1.1); }
+    100% { background-color: #b3ffb3; transform: scale(1); }
+}
+
+@keyframes flashRed {
+    0% { background-color: #ffb3b3; transform: scale(1); }
+    50% { background-color: #ff0000; transform: scale(1.1); }
+    100% { background-color: #ffb3b3; transform: scale(1); }
+}
+
+#title{
+    text-align: center;
+}
+
+/* 外层容器 */
+#progressContainer {
+    /* position: fixed;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%); */ 
+    /* 绝对位置换flex位置 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 110px;
+    height: 420px;
+    gap: 8px;
+    font-family: "Microsoft Yahei", sans-serif;
+    z-index: 10;
+    margin-left: 60px;
+}
+  
+  /* 百分比文字放在上方 */
+#progressText {
+    font-size: 15px;
+    font-weight: bold;
+    color: rgb(10, 91, 132);
+    text-shadow: 0 0 4px rgba(255,255,255,0.6);
+    margin-bottom:8px;
+}
+
+  /* 外框 */
+#progressOuter {
+    width: 40px;
+    height: 420px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.35);
+    border: 2px solid rgba(0,0,0,0.1);
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    display: flex;
+    align-items: flex-end; /* 让内层从下往上长 */
+}
+  
+  /* 实际进度条 */
+#progressBar {
+    width: 100%;
+    height: 0%;
+    background: linear-gradient(to top, #ff7e5f, #feb47b);
+    border-radius: 18px;
+    transition: height 0.6s cubic-bezier(.22,.68,0,.98); /* 更平滑 */
+    will-change: height;
+}
+
+/* 浮动提示框样式 */
+#quoteBubble {
+    position: absolute;
+    right: 160px; /* 根据你进度条的位置微调 */
+    top:100px;
+    transform: translateY(50%);
+    background: rgba(255, 255, 255, 0.92);
+    border-radius: 12px;
+    padding: 8px 14px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+    white-space: nowrap;
+}
+  
+/* 动画效果：淡入、漂浮上升、淡出 */
+@keyframes floatBubble {
+    0% {
+      opacity: 0;
+      transform: translateY(40%);
+    }
+    10% {
+      opacity: 1;
+      transform: translateY(20%);
+    }
+    60% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-30%);
+    }
+}
+  
+  /* 启动动画 */
+#quoteBubble.show {
+    animation: floatBubble 3s ease-out forwards;
+}
+  
+
+#main{
+    flex:1;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* 响应式处理 */
+@media (max-width: 780px) {
+    #areas {
+        grid-template-columns: repeat(2, 100px);
+        grid-template-rows: repeat(2, 100px);
+        gap: 15px;
+    }
+    .number-box {
+        font-size: 28px;
+    }
+    #buttons button {
+        padding: 10px 22px;
+        font-size: 16px;
+    }
+    #buttons {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+}
